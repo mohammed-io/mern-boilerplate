@@ -7,6 +7,10 @@ import reduxThunk from 'redux-thunk';
 import reducers from './src/redux/reducers/index';
 import routes from './routes';
 
+
+// integrate new versions of modules, like react-router-dom (RR4)
+// port RR to RN when building mobile - EXPERIMENTAL
+
 // // redux middleware
 const store = createStore(reducers);
 

@@ -8,8 +8,8 @@ import NotFound from './src/app/NotFound';
 
 
 // post components
-import Post from './src/posts/Post';
-import PostList from './src/posts/PostList';
+import Post from './src/posts/components/Post';
+import PostList from './src/posts/components/PostList';
 
 
 export default (

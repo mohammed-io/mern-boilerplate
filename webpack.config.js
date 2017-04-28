@@ -7,11 +7,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
 
   // dev server
-  // devServer: {
-  //   historyApiFallback: true,
-  //   publicPath: "/",
-  //   contentBase: "./"
-  // },
+  devServer: {
+    historyApiFallback: true,
+    publicPath: "/",
+    contentBase: "./"
+  },
 
   // entry
   entry: './client/index.js',
