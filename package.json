@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "server": "tsc && nodemon ./build/server/server.js",
+    "server": "tsc && nodemon ./build/server/index.js",
     "client": "webpack"
   },
   "dependencies": {

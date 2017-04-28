@@ -1,69 +1,52 @@
+import { Request, Response, NextFunction } from 'express';
+import * as Promise from 'bluebird';
 import Post from '../models/Post';
 
-// get all posts
-export function getPosts(req, res, next) {
-  Post.find()
-  .then((posts) => {
-    res.status(200).json({ posts });
-  })
-  .catch((error) => {
-    res.status(500).json({ error });
-  })
-}
 
-// get post by id
-export function getPostById(req, res, next) {
-  const id = req.params.id;
+class PostController {
 
-  Post.find(id)
-  .then((post) => {
-    res.status(200).json({ post });
-  })
-  .catch((error) => {
-    res.status(500).json({ error });
-  })
-}
+  // get all posts
+  public static get(params, callback): void {
+    
+    Post.find(params, (err, posts) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, posts);
+    })
+  }
 
 
-// create post
-export function createPost(req, res, next) {
-  
-  const post = new Post(req.body)
 
-  post.save()
-  .then((post) => {
-    res.status(200).json({ post });
-  })
-  .catch((error) => {
-    res.status(500).json({ error });
-  })
+  // get post by slug
+  public static getBySlug(slug, params, callback): void {
+    
+    Post.findOne({slug}, (err, post) => {
+			if (err){
+				if (callback != null)
+					callback({ message:'Profile Not Found' }, null)
 
-}
+				return
+			}
+
+			if (callback != null)
+				callback(null, post)
+		})
+  }
 
 
-// update post by id
-export function updatePost(req, res, next) {
-  const id = req.params.id;
 
-  Post.findByIdAndUpdate(id, req.body)
-  .then((post) => {
-    res.status(200).json({ post });
-  })
-  .catch((error) => {
-    res.status(500).json({ error });
-  })
+  // create post
+
+
+  // update post
+
+
+
+  // delete post
+
+
 }
 
 
-// delete post by id
-export function deletePost(req, res, next) {
-  const id = req.params.id;
-
-  Post.findByIdAndRemove(id)
-  .then((post) => {
-    res.status(200).json({ post });
-  })
-  .catch((error) => {
-    res.status(500).json({ error });
-  })
-}
+export default PostController;

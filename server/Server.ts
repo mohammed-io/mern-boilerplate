@@ -9,7 +9,9 @@ import * as cors from 'cors';
 import * as path from 'path';
 
 // custom modules
-
+import UserRouter from './router/UserRouter';
+import PostRouter from './router/PostRouter';
+// import { ApiRouter } from './router/ApiRouter';
 
 // Server class
 class Server {
@@ -27,6 +29,9 @@ class Server {
   // application config
   public config() {
 
+    const MONGO_URI: string = 'mongodb://localhost/mern-boilerplate'; 
+    mongoose.connect(MONGO_URI);
+
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());
@@ -35,19 +40,27 @@ class Server {
     this.app.use(helmet());
     this.app.use(cors());
 
-    this.app.listen(3000, () => {
-      console.log(`Listening on port ${process.env.PORT || 3000}`);
-    });
-
   }
 
   // application routes
   public routes(): void {
-    let router = express.Router();
+
+    let router: express.Router;
+    router = express.Router();
 
     this.app.use('/', router);
-    // this.app.use('/api/users', UserRouter);
+    this.app.use('/api/v1/user', UserRouter);
+    this.app.use('/api/v1/posts', PostRouter);
   }
+
+  // public routes(): void {
+  //   let router: express.Router;
+  //   router = express.Router();
+
+  //   ApiRouter.getAll(router);
+  //   ApiRouter.getBySlug(router);
+  //   this.app.use('/api/v1', router);
+  // }
 
 }
 

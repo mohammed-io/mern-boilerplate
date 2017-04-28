@@ -25,4 +25,4 @@ exports.default = function (app) {
     **************************************/
     app.use('/api', apiRoutes);
 };
-//# sourceMappingURL=v1.js.map
+//# sourceMappingURL=v2.js.map

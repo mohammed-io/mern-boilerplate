@@ -1,5 +1,12 @@
 # MERN Boilerplate
 
+### Getting Started
+
+`yarn install`
+
+`yarn server`
+
+`yarn client`
 
 
 ### Tech:

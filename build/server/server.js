@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
+var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var compression = require("compression");
@@ -8,6 +9,9 @@ var logger = require("morgan");
 var helmet = require("helmet");
 var cors = require("cors");
 // custom modules
+var UserRouter_1 = require("./router/UserRouter");
+var PostRouter_1 = require("./router/PostRouter");
+// import { ApiRouter } from './router/ApiRouter';
 // Server class
 var Server = (function () {
     function Server() {
@@ -17,6 +21,8 @@ var Server = (function () {
     }
     // application config
     Server.prototype.config = function () {
+        var MONGO_URI = 'mongodb://localhost/mern-boilerplate';
+        mongoose.connect(MONGO_URI);
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use(cookieParser());
@@ -24,15 +30,14 @@ var Server = (function () {
         this.app.use(compression());
         this.app.use(helmet());
         this.app.use(cors());
-        this.app.listen(3000, function () {
-            console.log("Listening on port " + (process.env.PORT || 3000));
-        });
     };
     // application routes
     Server.prototype.routes = function () {
-        var router = express.Router();
+        var router;
+        router = express.Router();
         this.app.use('/', router);
-        // this.app.use('/api/users', UserRouter);
+        this.app.use('/api/v1/user', UserRouter_1.default);
+        this.app.use('/api/v1/posts', PostRouter_1.default);
     };
     return Server;
 }());
