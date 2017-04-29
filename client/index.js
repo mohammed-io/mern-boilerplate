@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './src/redux/reducers/index';
 import routes from './routes';
-import './src/styles/css/main.css';
+import './src/styles/application.scss';
 
 
 // create store with middleware

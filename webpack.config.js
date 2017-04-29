@@ -27,18 +27,18 @@ const config = {
     rules: [
 
       // javascript
-      { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
 
-      { test: /\.ts$/, exclude: /node_modules/, use: 'ts-loader' },
+      { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
       
       // sass
-      { test: /\.scss$/, use: "sass-loader" },
+      { test: /\.scss$/, loader: "style-loader!css-loader!sass-loader" },
       
       // css
-      { test: /\.css$/, use: "css-loader" },
+      { test: /\.css$/, loader: "style-loader!css-loader" },
 
       // handlebars
-      { test: /\.handlebars$/, use: "handlebars-loader" }
+      { test: /\.handlebars$/, loader: "handlebars-loader" }
     
     ]
   },
