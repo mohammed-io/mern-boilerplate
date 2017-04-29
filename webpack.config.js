@@ -28,12 +28,17 @@ const config = {
 
       // javascript
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
+
+      { test: /\.ts$/, exclude: /node_modules/, use: 'ts-loader' },
       
       // sass
       { test: /\.scss$/, use: "sass-loader" },
       
       // css
-      { test: /\.css$/, use: "css-loader" }
+      { test: /\.css$/, use: "css-loader" },
+
+      // handlebars
+      { test: /\.handlebars$/, use: "handlebars-loader" }
     
     ]
   },
@@ -41,6 +46,7 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'client/index.html'
     }),
