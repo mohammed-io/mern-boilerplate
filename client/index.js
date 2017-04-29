@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router, browserHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
@@ -22,9 +22,7 @@ const store = createStoreWithMiddleware(
 // render
 render(
   <Provider store={store}>
-    <Router>
-      {routes}
-    </Router>
+    <Router routes={routes} history={browserHistory} />
   </Provider>,
   document.getElementById('root')
 );

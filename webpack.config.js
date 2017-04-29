@@ -49,15 +49,15 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'client/index.html'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      output: { comments: false },
-      mangle: false,
-      sourcemap: true,
-      minimize: true,
-      mangle: { except: ['$super', '$', 'exports', 'require', '$q', '$ocLazyLoad'] },
     })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    //   output: { comments: false },
+    //   mangle: false,
+    //   sourcemap: true,
+    //   minimize: true,
+    //   mangle: { except: ['$super', '$', 'exports', 'require', '$q', '$ocLazyLoad'] },
+    // })
   ]
 }
 
