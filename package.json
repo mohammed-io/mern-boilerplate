@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "server:dev": "tsc && nodemon ./build/server/index.js",
-    "server:prod": "node ./build/server/server.js",
+    "server:prod": "node ./build/server/index.js",
     "client:dev": "webpack-dev-server --hot --history-api-fallback",
     "client:prod": "NODE_ENV=production webpack -p"
   },
