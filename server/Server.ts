@@ -9,11 +9,6 @@ import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as path from 'path';
 
-// react
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { BrowserRouter as Router, } from 'react-router-dom';
-import AppIndex from '../client/src/app/AppIndex';
 
 // custom modules
 import UserRouter from './router/UserRouter';
@@ -38,11 +33,7 @@ class Server {
   public config() {
 
     const MONGO_URI: string = 'mongodb://localhost/mern-boilerplate'; 
-    mongoose.connect(process.env.MONGODB_URI);
-
-    // view engine for rendering React
-    this.app.set('views', path.join(__dirname, 'views'));
-    this.app.set('view engine', 'handlebars');
+    mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
 
     // express middleware
     this.app.use(bodyParser.urlencoded({ extended: true }));

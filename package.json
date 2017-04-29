@@ -7,7 +7,7 @@
     "server:dev": "tsc && nodemon ./build/server/index.js",
     "server:prod": "node ./build/server/index.js",
     "client:dev": "webpack-dev-server --hot --history-api-fallback",
-    "client:prod": "NODE_ENV=production webpack -p"
+    "client:prod": "NODE_ENV=production webpack"
   },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",

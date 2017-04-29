@@ -22,10 +22,7 @@ var Server = (function () {
     // application config
     Server.prototype.config = function () {
         var MONGO_URI = 'mongodb://localhost/mern-boilerplate';
-        mongoose.connect(MONGO_URI);
-        // view engine for rendering React
-        this.app.set('views', './views');
-        this.app.set('view engine', 'handlebars');
+        mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
         // express middleware
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
@@ -47,4 +44,4 @@ var Server = (function () {
 }());
 // export
 exports.default = new Server().app;
-//# sourceMappingURL=Server.js.map
+//# sourceMappingURL=server.js.map

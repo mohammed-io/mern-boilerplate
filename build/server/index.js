@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var http = require("http");
 var debug = require("debug");
-var Server_1 = require("./Server");
+var server_1 = require("./server");
 debug('ts-express:server');
 var port = normalizePort(process.env.PORT || 3000);
-Server_1.default.set('port', port);
+server_1.default.set('port', port);
 console.log("Server listening on port " + port);
-var server = http.createServer(Server_1.default);
+var server = http.createServer(server_1.default);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

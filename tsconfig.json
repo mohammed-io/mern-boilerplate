@@ -4,7 +4,8 @@
     "module": "commonjs",
     "target": "es5",
     "sourceMap": true,
-    "allowJs": true
+    "allowJs": true,
+    "jsx": "react"
   },
   "include": [
     "./server/**/*"
