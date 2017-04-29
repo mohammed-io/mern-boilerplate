@@ -37,8 +37,8 @@ class Server {
   // application config
   public config() {
 
-    const MONGO_URI: string = process.env.MONGODB_URI || 'mongodb://localhost/mern-boilerplate'; 
-    mongoose.connect(MONGO_URI);
+    const MONGO_URI: string = 'mongodb://localhost/mern-boilerplate'; 
+    mongoose.connect(process.env.MONGODB_URI);
 
     // view engine for rendering React
     this.app.set('views', path.join(__dirname, 'views'));
