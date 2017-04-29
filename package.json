@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "server:dev": "tsc && nodemon ./build/server/index.js",
-    "server:prod": "",
+    "server:prod": "node ./build/server/server.js",
     "client:dev": "webpack-dev-server --hot --history-api-fallback",
-    "client:prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js"
+    "client:prod": "NODE_ENV=production webpack -p"
   },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
