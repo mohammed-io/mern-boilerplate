@@ -17,7 +17,7 @@ export class UserRouter {
         res.status(500).json({ err });
       }
       res.status(200).json({ users });
-    })
+    });
   }
 
   public getUserBySlug(req: Request, res: Response, next: NextFunction) {

@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV === 'production') {
-  export default './store.prod';
+  module.exports =  require('./store.prod');
 } else {
-  export default './store.dev';
+  module.exports =  require('./store.dev');
 }

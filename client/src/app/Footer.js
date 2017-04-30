@@ -4,7 +4,9 @@ export default class Footer extends Component {
   render() {
     return (
       <div>
-        <h1>Footer</h1>
+        <footer className="footer">
+          <p>MERN Boilerplate - <a href="https://iamclaytonray.com/">@iamclaytonray</a></p>
+        </footer>
       </div>
     );
   }
