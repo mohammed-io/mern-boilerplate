@@ -11,7 +11,6 @@ $standard-font: 'Roboto', sans-serif;
 
 body {
   padding-top: 50px;
-  padding-bottom: 20px;
 }
 
 a {
@@ -35,4 +34,10 @@ a {
     font-size: 24px;
     letter-spacing: 1.2px;
   }
+}
+
+
+img {
+  max-width: 100%;
+  max-height: 100%;
 }

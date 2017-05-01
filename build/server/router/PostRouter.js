@@ -37,11 +37,12 @@ var PostRouter = (function () {
             slug: slug,
             content: content
         });
-        post.save(function (err, post) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
+        post.save()
+            .then(function (post) {
             res.status(200).json({ post: post });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     // update post by slug

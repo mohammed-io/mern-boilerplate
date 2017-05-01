@@ -12,23 +12,25 @@ export class PostRouter {
   }
 
   public getAllPosts(req: Request, res: Response, next: NextFunction) {
-    Post.find((err, posts) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
-      res.status(200).json({ posts });
+    Post.find()
+    .then((post) => {
+      res.status(200).json({ post });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
     })
   }
 
   public getPostBySlug(req: Request, res: Response, next: NextFunction) {
     const slug = req.params.slug;
     
-    Post.findOne({slug}, (err, post) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
+    Post.findOne({slug})
+    .then((post) => {
       res.status(200).json({ post });
-    });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 
@@ -48,13 +50,13 @@ export class PostRouter {
       content
     });
 
-    post.save((err, post) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
+    post.save()
+    .then((post) => {
       res.status(200).json({ post });
-    });
-
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 
@@ -62,12 +64,13 @@ export class PostRouter {
   public updatePost(req: Request, res: Response, next: NextFunction): void {
     const slug = req.body.slug;
 
-    Post.findOneAndUpdate({slug}, req.body, (err, post) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
+    Post.findOneAndUpdate({slug}, req.body)
+    .then((post) => {
       res.status(200).json({ post });
-    });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 
@@ -75,12 +78,13 @@ export class PostRouter {
   public deletePost(req: Request, res: Response, next: NextFunction): void {
     const slug = req.body.slug;
 
-    Post.findOneAndRemove({slug}, (err, post) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
-      res.status(204).json({ post });
-    });
+    Post.findOneAndRemove({slug})
+    .then((post) => {
+      res.status(200).json({ post });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 

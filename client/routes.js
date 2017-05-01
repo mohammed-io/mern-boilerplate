@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 
 // global components
 import AppIndex from './src/app/AppIndex';
+import Home from './src/app/Home';
 import NotFound from './src/app/NotFound';
 
 
@@ -17,6 +18,7 @@ import PostList from './src/posts/components/PostList';
 
 export default (
   <Route path="/" component={AppIndex}>
+    <IndexRoute component={Home} />
     <Route path="posts" component={PostList} />
     <Route path="login" component={Login} />
     <Route path="register" component={Register} />

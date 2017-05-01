@@ -1,7 +1,7 @@
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/posts';
-import Post from './Post'
+import Post from './Post';
 
 class PostList extends Component {
   render() {
