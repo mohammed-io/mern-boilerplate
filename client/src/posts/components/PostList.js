@@ -1,11 +1,48 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actions/posts';
+import Post from './Post'
 
-export default class PostList extends Component {
+class PostList extends Component {
   render() {
     return (
       <div>
-        <h1>Post List</h1>
+        {this.props.posts.map(post =>
+          <Post
+            key={post._id}
+            title={post.title}
+            slug={post.slug}
+            content={post.content}
+          />
+        )}
       </div>
     );
   }
 }
+
+PostList.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+  }).isRequired).isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts.allPosts.posts
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  dispatch(actions.fetchPosts())
+}
+
+const FullPostList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostList)
+
+
+export default FullPostList;

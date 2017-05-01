@@ -6,7 +6,7 @@
   "scripts": {
     "server:dev": "tsc && nodemon ./build/server/index.js",
     "server:prod": "node ./build/server/index.js",
-    "client:dev": "webpack-dev-server",
+    "client:dev": "webpack && webpack-dev-server",
     "client:prod": "NODE_ENV=production webpack"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "handlebars": "^4.0.6",
     "helmet": "^3.5.0",
     "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.4",
     "mongoose": "^4.9.4",
     "morgan": "^1.8.1",
     "node-sass": "^4.5.2",
@@ -31,7 +32,9 @@
     "react-router": "3.0.2",
     "redux": "^3.6.0",
     "redux-form": "^6.6.2",
+    "redux-observable": "^0.14.1",
     "redux-thunk": "^2.2.0",
+    "rxjs": "^5.3.0",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3"
   },
@@ -61,7 +64,7 @@
     "style-loader": "^0.16.1",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
-    "webpack": "^2.3.3",
+    "webpack": "^2.4.1",
     "webpack-dev-server": "2.4.0"
   }
 }

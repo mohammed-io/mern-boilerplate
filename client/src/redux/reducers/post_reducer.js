@@ -15,14 +15,14 @@ export default function (state = INITIAL_STATE, action) {
     case types.FETCH_POST_SUCCESS:
       return {
         ...state,
-        singlePost: { post: action.payload, error: null }
+        singlePost: { post: action.payload.post, error: null }
       };
 
 
     case types.FETCH_POSTS_SUCCESS:
       return {
         ...state,
-        allPosts: { posts: action.payload, error: null }
+        allPosts: { posts: action.payload.posts, error: null }
       };
 
     case types.CREATE_POST_SUCCESS:
@@ -43,11 +43,6 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         deletedPost: { post: action.payload, error: null }
       }
-  
-
-
-
-
 
     default:
       return state;

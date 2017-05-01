@@ -5,17 +5,62 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 
-const config = {
+// abstract rules from config
+const rules = [
 
-  // dev server
-  devServer: {
-    historyApiFallback: true,
-    publicPath: "/",
-    contentBase: "./"
+  // javascript
+  {
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: [ 'babel-loader' ]
   },
 
+
+  // typescript
+  {
+    test: /\.tsx?$/,
+    exclude: /node_modules/,
+    use: [ 'ts-loader' ]
+  },
+  
+  
+  // sass
+  { 
+    test: /\.scss$/, 
+    use: [ 'style-loader', 'css-loader', 'sass-loader' ] 
+  },
+  
+  // css
+  { 
+    test: /\.css$/,
+    use: [ 'style-loader', 'css-loader' ]
+  },
+
+  // handlebars
+  {
+    test: /\.handlebars$/,
+    use: [ 'handlebars-loader' ]
+  },
+  
+  // images
+  {
+    test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+    use: [ 'file-loader?name=[name].[ext]' ]
+  }
+];
+
+
+
+
+
+// webpack config
+
+const config = {
+
   // entry
-  entry: './client/index.js',
+  entry: {
+    client: './client/index.js'
+  },
 
   // output
   output: {
@@ -25,43 +70,46 @@ const config = {
 
   // loaders/rules
   module: {
-    rules: [
-
-      // javascript
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-
-      { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' },
-      
-      // sass
-      { test: /\.scss$/, loader: "style-loader!css-loader!sass-loader" },
-      
-      // css
-      { test: /\.css$/, loader: "style-loader!css-loader" },
-
-      // handlebars
-      { test: /\.handlebars$/, loader: "handlebars-loader" }
-    
-    ]
+    rules: rules
   },
 
   plugins: [
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('application.scss'),
     new HtmlWebpackPlugin({
-      template: 'client/index.html'
+      template: 'client/index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+      }
     })
     // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
+    //   compress: { warnings: true },
     //   output: { comments: false },
     //   mangle: false,
     //   sourcemap: true,
     //   minimize: true,
     //   mangle: { except: ['$super', '$', 'exports', 'require', '$q', '$ocLazyLoad'] },
     // })
-  ]
-}
+  ],
+
+  // shared 
+
+  devtool: "source-map",
+
+
+  // dev server
+  devServer: {
+    historyApiFallback: true,
+    publicPath: "/",
+    contentBase: "./",
+    hot: true
+  }
+};
 
 // export
 module.exports = config;
