@@ -11,24 +11,16 @@ export class UserRouter {
     this.routes();
   }
 
-  public getAllUsers(req: Request, res: Response, next: NextFunction) {
-    User.find((err, users) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
-      res.status(200).json({ users });
-    });
-  }
-
   public getUserBySlug(req: Request, res: Response, next: NextFunction) {
     const slug = req.params.slug;
     
-    User.findOne({slug}, (err, user) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
+    User.findOne({slug})
+    .then((user) => {
       res.status(200).json({ user });
-    });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 
@@ -50,13 +42,13 @@ export class UserRouter {
       password
     });
 
-    user.save((err, user) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
-      res.status(200).json({ user });
-    });
-
+    user.save()
+    .then((user) => {
+      res.status(201).json({ user });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 
@@ -64,12 +56,13 @@ export class UserRouter {
   public updateUser(req: Request, res: Response, next: NextFunction): void {
     const slug = req.body.slug;
 
-    User.findOneAndUpdate(slug, req.body, (err, user) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
+    User.findOneAndUpdate(slug, req.body)
+    .then((user) => {
       res.status(200).json({ user });
-    });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 
@@ -77,18 +70,18 @@ export class UserRouter {
   public deleteUser(req: Request, res: Response, next: NextFunction): void {
     const slug = req.body.slug;
 
-    User.findOneAndRemove(slug, (err, user) => {
-      if (err) {
-        res.status(500).json({ err });
-      }
+    User.findOneAndRemove(slug)
+    .then((user) => {
       res.status(204).json({ user });
-    });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    })
   }
 
 
 
   routes() {
-    this.router.get('/', this.getAllUsers);
     this.router.get('/:slug', this.getUserBySlug);
     this.router.post('/', this.createUser);
     this.router.put('/:slug', this.updateUser);

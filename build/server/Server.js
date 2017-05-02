@@ -39,9 +39,6 @@ var Server = (function () {
             res.header('Access-Control-Allow-Credentials', 'true');
             next();
         });
-        // view engine
-        // this.app.set('views', path.join(__dirname, 'views')); 
-        // this.app.set('view engine', 'handlebars');
     };
     // application routes
     Server.prototype.routes = function () {

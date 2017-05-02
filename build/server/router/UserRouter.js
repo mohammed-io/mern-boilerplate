@@ -7,21 +7,14 @@ var UserRouter = (function () {
         this.router = express_1.Router();
         this.routes();
     }
-    UserRouter.prototype.getAllUsers = function (req, res, next) {
-        User_1.default.find(function (err, users) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
-            res.status(200).json({ users: users });
-        });
-    };
     UserRouter.prototype.getUserBySlug = function (req, res, next) {
         var slug = req.params.slug;
-        User_1.default.findOne({ slug: slug }, function (err, user) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
+        User_1.default.findOne({ slug: slug })
+            .then(function (user) {
             res.status(200).json({ user: user });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     // create user
@@ -39,35 +32,37 @@ var UserRouter = (function () {
             email: email,
             password: password
         });
-        user.save(function (err, user) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
-            res.status(200).json({ user: user });
+        user.save()
+            .then(function (user) {
+            res.status(201).json({ user: user });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     // update user by slug
     UserRouter.prototype.updateUser = function (req, res, next) {
         var slug = req.body.slug;
-        User_1.default.findOneAndUpdate(slug, req.body, function (err, user) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
+        User_1.default.findOneAndUpdate(slug, req.body)
+            .then(function (user) {
             res.status(200).json({ user: user });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     // delete user by slug
     UserRouter.prototype.deleteUser = function (req, res, next) {
         var slug = req.body.slug;
-        User_1.default.findOneAndRemove(slug, function (err, user) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
+        User_1.default.findOneAndRemove(slug)
+            .then(function (user) {
             res.status(204).json({ user: user });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     UserRouter.prototype.routes = function () {
-        this.router.get('/', this.getAllUsers);
         this.router.get('/:slug', this.getUserBySlug);
         this.router.post('/', this.createUser);
         this.router.put('/:slug', this.updateUser);

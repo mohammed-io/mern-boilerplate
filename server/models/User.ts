@@ -29,7 +29,11 @@ const UserSchema = new Schema({
     type: String,
     default: '',
     required: true
-  }
+  },
+  author: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Post'
+  }]
 });
 
 // hash user's password before saving to db
