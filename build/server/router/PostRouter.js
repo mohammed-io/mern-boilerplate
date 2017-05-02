@@ -8,20 +8,22 @@ var PostRouter = (function () {
         this.routes();
     }
     PostRouter.prototype.getAllPosts = function (req, res, next) {
-        Post_1.default.find(function (err, posts) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
+        Post_1.default.find()
+            .then(function (posts) {
             res.status(200).json({ posts: posts });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     PostRouter.prototype.getPostBySlug = function (req, res, next) {
         var slug = req.params.slug;
-        Post_1.default.findOne({ slug: slug }, function (err, post) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
+        Post_1.default.findOne({ slug: slug })
+            .then(function (post) {
             res.status(200).json({ post: post });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     // create post
@@ -48,21 +50,23 @@ var PostRouter = (function () {
     // update post by slug
     PostRouter.prototype.updatePost = function (req, res, next) {
         var slug = req.body.slug;
-        Post_1.default.findOneAndUpdate({ slug: slug }, req.body, function (err, post) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
+        Post_1.default.findOneAndUpdate({ slug: slug }, req.body)
+            .then(function (post) {
             res.status(200).json({ post: post });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     // delete post by slug
     PostRouter.prototype.deletePost = function (req, res, next) {
         var slug = req.body.slug;
-        Post_1.default.findOneAndRemove({ slug: slug }, function (err, post) {
-            if (err) {
-                res.status(500).json({ err: err });
-            }
-            res.status(204).json({ post: post });
+        Post_1.default.findOneAndRemove({ slug: slug })
+            .then(function (post) {
+            res.status(200).json({ post: post });
+        })
+            .catch(function (error) {
+            res.status(500).json({ error: error });
         });
     };
     PostRouter.prototype.routes = function () {

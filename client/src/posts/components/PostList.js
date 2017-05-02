@@ -13,6 +13,7 @@ class PostList extends Component {
             title={post.title}
             slug={post.slug}
             content={post.content}
+            timestamp={post.timestamp}
           />
         )}
       </div>
@@ -25,7 +26,8 @@ PostList.propTypes = {
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired,
   }).isRequired).isRequired
 }
 

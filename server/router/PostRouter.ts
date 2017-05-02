@@ -13,8 +13,8 @@ export class PostRouter {
 
   public getAllPosts(req: Request, res: Response, next: NextFunction) {
     Post.find()
-    .then((post) => {
-      res.status(200).json({ post });
+    .then((posts) => {
+      res.status(200).json({ posts });
     })
     .catch((error) => {
       res.status(500).json({ error });
