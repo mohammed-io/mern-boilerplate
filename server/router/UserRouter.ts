@@ -12,7 +12,7 @@ export class UserRouter {
   }
 
   public getUserBySlug(req: Request, res: Response, next: NextFunction) {
-    const slug = req.params.slug;
+    const slug: string = req.params.slug;
     
     User.findOne({slug})
     .then((user) => {
@@ -26,10 +26,10 @@ export class UserRouter {
 
   // create user
   public createUser(req: Request, res: Response, next: NextFunction): void {
-    const name = req.body.name;
-    const slug = req.body.slug;
-    const email = req.body.email;
-    const password = req.body.password;
+    const name: string = req.body.name;
+    const slug: string = req.body.slug;
+    const email: string = req.body.email;
+    const password: string = req.body.password;
 
     if (!name || !slug || !email || !password) {
       res.status(422).json({ message: 'All Fields Required.' });
@@ -54,7 +54,7 @@ export class UserRouter {
 
   // update user by slug
   public updateUser(req: Request, res: Response, next: NextFunction): void {
-    const slug = req.body.slug;
+    const slug: string = req.body.slug;
 
     User.findOneAndUpdate(slug, req.body)
     .then((user) => {
@@ -68,7 +68,7 @@ export class UserRouter {
 
   // delete user by slug
   public deleteUser(req: Request, res: Response, next: NextFunction): void {
-    const slug = req.body.slug;
+    const slug: string = req.body.slug;
 
     User.findOneAndRemove(slug)
     .then((user) => {

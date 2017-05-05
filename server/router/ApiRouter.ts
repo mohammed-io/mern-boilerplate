@@ -40,8 +40,8 @@ export class ApiRouter {
   public static getBySlug( router: Router ): void {
     
     router.get('/:resource/:slug', (req: Request, res: Response, next: NextFunction) => {
-      const slug = req.params.slug;
-      const resource = req.params.resource;
+      const slug: string = req.params.slug;
+      const resource: string = req.params.resource;
       const controller = controllers[resource];
 
       if (!controller) {
