@@ -1,8 +1,7 @@
-import * as mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
 import * as bcrypt from 'bcrypt-nodejs';
-const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+let UserSchema: Schema = new Schema({
   timestamp: {
     type: Date,
     default: Date.now
@@ -69,4 +68,4 @@ UserSchema.methods.comparePassword = (candidatePassword, cb) => {
   });
 };
 
-export default mongoose.model('User', UserSchema);
+export default model('User', UserSchema);
