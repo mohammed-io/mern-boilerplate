@@ -6,7 +6,7 @@
   "scripts": {
     "server:dev": "tsc && nodemon ./build/server/index.js",
     "server:prod": "node ./build/server/index.js",
-    "client:dev": "webpack && webpack-dev-server",
+    "client:dev": "webpack-dev-server",
     "client:prod": "NODE_ENV=production webpack"
   },
   "dependencies": {
