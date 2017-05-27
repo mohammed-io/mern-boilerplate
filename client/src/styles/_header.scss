@@ -1,0 +1,21 @@
+.header {
+  @include flex-mixin(row, wrap, center, center);
+  background: #fff;
+  padding: 2em;
+  // opacity: 0.95;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 3;
+  box-shadow: .1rem .1rem 1rem .1rem #ccc;
+  a {
+    color: black;
+    padding: 0 1rem;
+    font-size: 1.75rem;
+    font-weight: 500;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
