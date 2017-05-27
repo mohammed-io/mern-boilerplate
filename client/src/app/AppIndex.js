@@ -8,7 +8,7 @@ export default class AppIndex extends Component {
       <div>
         <Header />
         
-        <div>
+        <div className="main-container">
           {this.props.children}
         </div>
         

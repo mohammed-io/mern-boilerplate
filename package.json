@@ -4,10 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "server:dev": "tsc && nodemon ./build/server/index.js",
-    "server:prod": "node ./build/server/index.js",
-    "client:dev": "webpack-dev-server",
-    "client:prod": "NODE_ENV=production webpack"
+    "server": "tsc && nodemon ./build/server/index.js",
+    "client": "webpack-dev-server"
   },
   "dependencies": {
     "axios": "^0.16.1",

@@ -56,7 +56,7 @@ export class UserRouter {
   public updateUser(req: Request, res: Response, next: NextFunction): void {
     const slug: string = req.body.slug;
 
-    User.findOneAndUpdate(slug, req.body)
+    User.findOneAndUpdate({slug}, req.body)
     .then((user) => {
       res.status(200).json({ user });
     })
@@ -70,7 +70,7 @@ export class UserRouter {
   public deleteUser(req: Request, res: Response, next: NextFunction): void {
     const slug: string = req.body.slug;
 
-    User.findOneAndRemove(slug)
+    User.findOneAndRemove({slug})
     .then((user) => {
       res.status(204).json({ user });
     })

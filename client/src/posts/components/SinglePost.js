@@ -8,7 +8,10 @@ class SinglePost extends Component {
     const { _id, title, slug, content, timestamp } = this.props.post;
     return (
       <div>
-        <Post _id={_id} title={title} slug={slug} content={content} timestamp={timestamp} />
+        <h1>{title}</h1>
+        <p>{slug}</p>
+        <p>{content}</p>
+        <p>{timestamp}</p>
       </div>
     );
   }

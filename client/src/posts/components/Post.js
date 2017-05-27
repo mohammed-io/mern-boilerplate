@@ -1,18 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 class Post extends Component {
   render() {
+    const { _id, title, slug, content, timestamp } = this.props;
     return (
       <div className="container-fluid">
         <div style={{ paddingTop: 50}}></div>
-        <p><span style={{ fontWeight: 'bold' }}>Title:</span> {this.props.title}</p>
-        <p><span style={{ fontWeight: 'bold' }}>ID:</span> {this.props._id}</p>
-        <p><span style={{ fontWeight: 'bold' }}>Slug:</span> {this.props.slug}</p>
-        <p><span style={{ fontWeight: 'bold' }}>Content:</span> {this.props.content}</p>
-        <p><span style={{ fontWeight: 'bold' }}>Timestamp:</span> {this.props.timestamp}</p>
-        <Link to={`posts/${this.props.slug}`}>Read More...</Link>
-        <div style={{ padding: 50}}></div>
+        <Link to={`posts/${slug}`}>
+          <h1>{title}</h1>
+          <p>{_id}</p>
+          <p>{slug}</p>
+          <p>{content}</p>
+          <p>{timestamp}</p>
+        </Link>
       </div>
     )
   }
