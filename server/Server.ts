@@ -3,20 +3,18 @@ import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as compression from 'compression';
-import * as handlebars from 'handlebars';
 import * as logger from 'morgan';
 import * as helmet from 'helmet';
 import * as cors from 'cors';
 import * as path from 'path';
 
 
-// custom modules
+// API Routers
 import UserRouter from './router/UserRouter';
 import PostRouter from './router/PostRouter';
-// import { ApiRouter } from './router/ApiRouter';
 
 
-// Server class
+// Server Class
 class Server {
 
   public app: express.Application;
@@ -29,13 +27,13 @@ class Server {
   }
 
   
-  // application config
+  // App Config
   public config() {
 
     const MONGO_URI: string = 'mongodb://localhost/mern-boilerplate'; 
     mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
 
-    // express middleware
+    // Middleware
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());
@@ -44,39 +42,29 @@ class Server {
     this.app.use(helmet());
     this.app.use(cors());
 
-    // cors
-    // this.app.use((req, res, next) => {
-    //   res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-    //   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
-    //   res.header('Access-Control-Allow-Credentials', 'true');
-    //   next();
-    // });
+    // CORS
+    this.app.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+      res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      next();
+    });
     
   }
 
-  // application routes
+  // App Routes
   public routes(): void {
 
     let router: express.Router;
     router = express.Router();
 
     this.app.use('/', router);
-    this.app.use('/api/v1/user', UserRouter);
+    this.app.use('/api/v1/users', UserRouter);
     this.app.use('/api/v1/posts', PostRouter);
   }
-
-  // public routes(): void {
-  //   let router: express.Router;
-  //   router = express.Router();
-
-  //   ApiRouter.getAll(router);
-  //   ApiRouter.getBySlug(router);
-  //   this.app.use('/api/v1', router);
-  // }
-
 }
 
 
-// export
+// Export
 export default new Server().app;

@@ -35,18 +35,6 @@ const rules = [
     test: /\.css$/,
     use: [ 'style-loader', 'css-loader' ]
   },
-
-  // handlebars
-  {
-    test: /\.handlebars$/,
-    use: [ 'handlebars-loader' ]
-  },
-  
-  // images
-  {
-    test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-    use: [ 'file-loader?name=[name].[ext]' ]
-  }
 ];
 
 
