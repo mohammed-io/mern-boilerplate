@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './Header';
-import Footer from './Footer';
 
 const AppIndex = props => {
   return (
@@ -9,9 +8,8 @@ const AppIndex = props => {
       
         {props.children}
       
-      <Footer />
     </div>
   );
 }
 
-export default AppIndex
+export default AppIndex;

@@ -6,19 +6,21 @@ import Post from '../components/Post';
 
 class PostListContainer extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(actions.fetchPosts());
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(actions.fetchPosts());
   }
 
   render() {
     return (
-      <div>
+      <div className='col-lg-4'>
         {this.props.posts.map(post =>
           <Post
             key={post._id}
             title={post.title}
             slug={post.slug}
             content={post.content}
+            featuredImage={post.featuredImage}
             timestamp={post.timestamp}
           />
         )}
@@ -43,9 +45,5 @@ function mapStateToProps(state) {
   }
 }
 
-const FullPostList = connect(
-  mapStateToProps
-)(PostListContainer)
 
-
-export default FullPostList;
+export default connect(mapStateToProps)(PostListContainer);

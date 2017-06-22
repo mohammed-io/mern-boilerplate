@@ -1,17 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Post from './Post';
 import * as actions from '../../redux/actions/posts';
+import Post from './Post';
+import ReactHtmlParser from 'react-html-parser';
 
-class SinglePost extends Component {  
+class SinglePost extends Component {
+  
+  componentWillMount() {
+    const { dispatch, params } = this.props;
+    dispatch(actions.fetchPost(params.slug));
+  }
+
   render() {
-    const { _id, title, slug, content, timestamp } = this.props.post;
+    const { _id, title, slug, content, timestamp, featuredImage } = this.props.post;
     return (
-      <div>
+      <div className='col-lg-6 col-lg-offset-3'>
+        <img src={featuredImage} />
         <h1>{title}</h1>
-        <p>{slug}</p>
-        <p>{content}</p>
-        <p>{timestamp}</p>
+        <p>{ ReactHtmlParser(content) }</p>
       </div>
     );
   }
@@ -32,15 +38,5 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch, props) {
-  dispatch(actions.fetchPost(props.params.slug));
-}
 
-
-const FullSinglePost = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SinglePost)
-
-
-export default FullSinglePost;
+export default connect(mapStateToProps)(SinglePost);

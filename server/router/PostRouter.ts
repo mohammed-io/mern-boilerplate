@@ -39,6 +39,7 @@ export class PostRouter {
     const title: string = req.body.title;
     const slug: string = req.body.slug;
     const content: string = req.body.content;
+    const featuredImage: string = req.body.featuredImage;
 
     if (!title || !slug || !content) {
       res.status(422).json({ message: 'All Fields Required.' });
@@ -47,7 +48,8 @@ export class PostRouter {
     const post = new Post({
       title,
       slug,
-      content
+      content,
+      featuredImage
     });
 
     post.save()

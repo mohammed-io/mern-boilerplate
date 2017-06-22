@@ -1,15 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import PostListContainer from '../containers/PostListContainer';
 
-class PostList extends Component {
-  render() {
-    return (
-      <div>
-        <PostListContainer />
-      </div>
-    );
-  }
+const PostList = () => {
+  return <PostListContainer />
 }
 
 export default PostList;

@@ -1,9 +1,0 @@
-// flex-center mixin
-@mixin flex-mixin($direction, $wrap, $align, $justify) {
-  display: flex;
-  flex: 1;
-  flex-direction: $direction;
-  flex-wrap: $wrap;
-  align-items: $align;
-  justify-content: $justify;
-}

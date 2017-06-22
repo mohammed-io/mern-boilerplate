@@ -1,6 +1,6 @@
 import axios from 'axios';
-export const API_URL = 'http://localhost:3001/api/v1';
-export const CLIENT_ROOT_URL = 'http://localhost:8082';
+export const API_URL = 'http://localhost:3000/api/v1';
+export const CLIENT_ROOT_URL = 'http://localhost:8080';
 
 
 

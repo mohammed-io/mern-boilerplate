@@ -23,6 +23,10 @@ let PostSchema: Schema = new Schema({
     required: true,
     unique: true
   },
+  featuredImage: {
+    type: String,
+    default: ''
+  },
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User'
