@@ -58,14 +58,4 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-// compare password for logging in
-UserSchema.methods.comparePassword = (candidatePassword, cb) => {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) { 
-      return cb(err); 
-    }
-    cb(null, isMatch);
-  });
-};
-
 export default model('User', UserSchema);
