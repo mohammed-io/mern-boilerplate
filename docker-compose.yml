@@ -1,0 +1,25 @@
+
+services:
+  build: .
+  links:
+   - 'mongo:mongo'
+  environment:
+    NODE_ENV: 'development'
+  volumes:
+    - .:/app
+  command: nodemon ./build/server/server.js
+    
+
+transpile:
+  build: .
+  volumes:
+    - .:/app
+    - /app/node_modules
+  command: [ "tsc", "-w" ]
+
+
+mongo:
+  image: mongo
+  ports:
+   - "27017"
+  command: "mongod"
