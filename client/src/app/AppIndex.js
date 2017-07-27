@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header';
+import Nav from './Nav';
 
 const AppIndex = props => {
   return (
     <div>
-      <Header />
+      <Nav />
       
         {props.children}
       

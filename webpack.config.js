@@ -3,26 +3,14 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
-
 // abstract rules from config
 const rules = [
-
   // javascript
   {
     test: /\.js$/,
     exclude: /node_modules/,
     use: [ 'babel-loader' ]
   },
-
-
-  // typescript
-  {
-    test: /\.tsx?$/,
-    exclude: /node_modules/,
-    use: [ 'ts-loader' ]
-  },
-  
   
   // sass
   { 
@@ -38,11 +26,7 @@ const rules = [
 ];
 
 
-
-
-
 // webpack config
-
 const config = {
 
   // entry
@@ -86,9 +70,7 @@ const config = {
   ],
 
   // shared 
-
   devtool: "source-map",
-
 
   // dev server
   devServer: {

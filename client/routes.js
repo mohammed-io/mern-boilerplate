@@ -18,12 +18,12 @@ import SinglePost from './src/posts/components/SinglePost';
 
 
 export default (
-  <Route path="/" component={AppIndex}>
+  <Route path='/' component={AppIndex}>
     <IndexRoute component={Home} />
-    <Route path="posts" component={PostList} />
-    <Route path="posts/:slug" component={SinglePost} />
-    <Route path="login" component={Login} />
-    <Route path="register" component={Register} />
-    <Route path="*" component={NotFound} />
+    <Route path='posts' component={PostList} />
+    <Route path='posts/:slug' component={SinglePost} />
+    <Route path='login' component={Login} />
+    <Route path='register' component={Register} />
+    <Route path='*' component={NotFound} />
   </Route>
 );
