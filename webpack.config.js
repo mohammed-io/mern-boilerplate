@@ -5,6 +5,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // abstract rules from config
 const rules = [
+  
+  {
+    test: /\.tsx?$/,
+    use: ['react-hot-loader', 'awesome-typescript-loader']
+  },
+
   // javascript
   {
     test: /\.js$/,
@@ -31,13 +37,25 @@ const config = {
 
   // entry
   entry: {
-    client: './client/index.js'
+    client: './client/index.tsx',
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'redux'
+    ]
   },
 
   // output
   output: {
     path: __dirname + '/build',
-    filename: 'bundle.js'
+    filename: '[name].js'
+  },
+
+  // resolving ts files
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
   },
 
   // loaders/rules

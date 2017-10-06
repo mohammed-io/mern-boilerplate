@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
@@ -8,6 +8,7 @@ import reducers from './src/redux/reducers/index';
 import routes from './routes';
 import './src/styles/application.scss';
 
+declare var window;
 
 // create store with middleware
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
